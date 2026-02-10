@@ -1,2 +1,4 @@
-from .auth import auth
-from .errors import NoMatchError
+from .auth import Auth
+from .gamer import Gamer
+
+from .errors import *

@@ -3,19 +3,33 @@ import hashlib
 import json
 from typing import Dict, Any, Optional
 
-def sortStringify(obj: Dict[str, Any], indent: Optional[int] = None) -> str:
+def sortStringify(obj, indent=None):
     return json.dumps(obj, sort_keys=True, separators=(',', ':'))
 
+def getCRC(table: str, token: str):
+    string = table
+    if token != "":
+        string += token
+
+    crc = hashlib.md5((string).encode()).hexdigest()
+    return crc
+    
 class Internal:
     @staticmethod
     def requestSend(route: str, data: Dict[str, Any], token: str = "", id: int = 0) -> requests.Response:
         """
-            Handle sending requests to BlockBros.
+            Handles sending requests to BlockBros.
+
+            args:
+                route (str): example: "gamer/follow/put"
+                data: (dict): data should be the json data
+                token: (Optional) (str): the account token you get when you login
+                id: (Optional) (int): the long id. Example: (6529423364063232)
         """
         host = "block-bros.appspot.com"
         dataStr = sortStringify(data)
-        crc = hashlib.md5(dataStr.encode()).hexdigest()
-
+        crc = getCRC(dataStr, token)
+        
         try:
             response = requests.post(
                 f"https://{host}/{route}", 
