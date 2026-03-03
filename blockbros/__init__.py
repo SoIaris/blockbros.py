@@ -1,4 +1,5 @@
 from .auth import Auth
 from .gamer import Gamer
+from .comment import Comment
 
-from .errors import *
+from .exceptions import *

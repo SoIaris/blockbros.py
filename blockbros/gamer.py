@@ -1,5 +1,5 @@
 from .request import Internal
-from .errors import MissingGamer, TokenMismatch, ValidationException
+from .exceptions import MissingGamer, TokenMismatch, ValidationException
 
 from typing import Optional, List, Dict
 from .types import gamer

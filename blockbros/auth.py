@@ -1,5 +1,5 @@
 from .request import Internal
-from .errors import NoMatch, MissingGamer, ValidationException
+from .exceptions import NoMatch, MissingGamer, ValidationException
 from .types import auth, gamer
 
 class Auth:
